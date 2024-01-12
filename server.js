@@ -6,10 +6,12 @@ const pageSize = 15;
 
 app.use(cors());
 
+
+
 app.get('/top', async (req, res) => {
     const idResponse = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
 
-    const page = parseInt(req.query.page, 10) || 1;
+    const page = parseInt(req.query.page, 10) || 0;
     const offset = page * pageSize;
     const ids = await idResponse.json().then(ids => ids.slice(offset, offset + pageSize));
 
